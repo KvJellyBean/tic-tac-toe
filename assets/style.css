@@ -1,0 +1,125 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* border: 1px solid red; */
+}
+
+body {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    height: 100vh;
+}
+
+header {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+
+    & form {
+        display: none;
+        /* display: flex; */
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 30px;
+        border-radius: 10px;
+        border: 2px solid black;
+
+        & legend {
+            font-size: 25px;
+            font-weight: 600;
+        }
+
+        & input {
+            margin-top: -15px;
+            padding: 5px 10px;
+            border-radius: 10px;
+        }
+
+        & button {
+            padding: 10px 30px;
+            border-radius: 20px;
+        }
+    }
+
+    #playground {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 30px;
+
+        #board {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px;
+            padding: 10px;
+            border: 1px solid black;
+            border-radius: 10px;
+
+            & button {
+                width: 80px;
+                height: 80px;
+                font-weight: bold;
+                font-size: 80px;
+                text-align: center;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 10px;
+            }
+        }
+
+        .controller {
+            /* display: none; */
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
+            gap: 20px;
+
+            & button {
+                padding: 10px;
+                width: 150px;
+                border-radius: 20px;
+            }
+        }
+
+        .result {
+            /* display: none; */
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+            margin-top: 20px;
+
+            .display {
+                height: 100px;
+            }
+
+            .menu {
+                display: flex;
+                gap: 20px;
+
+                & button {
+                    padding: 10px;
+                    width: 100px;
+                    border-radius: 20px;
+                }
+            }
+        }
+    }
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
