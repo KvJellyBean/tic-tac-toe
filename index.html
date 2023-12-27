@@ -9,7 +9,54 @@
 </head>
 
 <body>
-    <h1>Tic Tac Toe</h1>
+    <header>
+        <h1>Tic Tac Toe</h1>
+    </header>
+
+    <main>
+        <!-- Forms -->
+        <form>
+            <legend>Main Menu</legend>
+            <label for="name1">Player 1:</label>
+            <input type="text" id="name1">
+
+            <label for="name2">Player 2:</label>
+            <input type="text" id="name2">
+
+            <button>Start Game</button>
+        </form>
+
+        <!-- Playground -->
+        <div id="playground">
+            <div id="board">
+                <button></button>
+                <button></button>
+                <button></button>
+                <button></button>
+                <button></button>
+                <button></button>
+                <button></button>
+                <button></button>
+                <button></button>
+            </div>
+            <div class="controller">
+                <button>Restart Game</button>
+                <button>Quit Game</button>
+            </div>
+
+            <div class="result">
+                <h2>Winner</h2>
+                <div class="display"> </div>
+                <div class="menu">
+                    <button>Play Again</button>
+                    <button>Quit</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>Made with &hearts; by KvJellyBean</footer>
+
     <script src="scripts/script.js"></script>
 </body>
 
