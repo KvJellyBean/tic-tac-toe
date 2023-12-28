@@ -151,22 +151,33 @@ const Game = (() => {
 })();
 
 const displayController = (() => {
+    const _mainMenu = document.querySelector('#mainMenu');
     const _form = document.querySelector('form');
     const _playground = document.querySelector('#playground');
     const _board = document.querySelector('#board');
+    const _enterGameBtn = document.querySelector('.startBtn');
     const _controller = document.querySelector('.controller');
-    const _restartBtn = document.querySelector('.controller button:nth-child(1)');
-    const _quitGameBtn = document.querySelector('.controller button:nth-child(2)');
+    const _restartBtn = document.querySelector('.restartGame');
+    const _quitGameBtn = document.querySelector('.quitGame');
     const _result = document.querySelector('.result');
     const _display = document.querySelector('.display');
-    const _playAgainBtn = document.querySelector('.menu button:nth-child(1)');
-    const _quitMenuBtn = document.querySelector('.menu button:nth-child(2)');
+    const _playAgainBtn = document.querySelector('.playAgain');
+
+    // Lobby - main menu (1st call)
+    const mainMenu = () => {
+        _mainMenu.style.display = 'grid';
+        _form.style.display = 'none';
+        _playground.style.display = 'none';
+        _result.style.display = 'none';
+
+        _enterGameBtn.addEventListener('click', initGame);
+    }
 
     // Game initialize
     const initGame = () => {
-        _form.style.display = 'flex';
-        _playground.style.display = 'none';
-        _result.style.display = 'none';
+        _mainMenu.style.display = 'none';
+        _form.style.display = 'grid';
+
         const _formInput = _form.querySelectorAll('input');
         _formInput.forEach(input => input.value = "");
         _form.addEventListener('submit', _gameStart);
@@ -223,10 +234,11 @@ const displayController = (() => {
     // End game condition
     const _endGame = () => {
         _board.removeEventListener('click', _playTurn);
-        _controller.style.display = 'none';
-        _result.style.display = 'flex';
+        // _board.style.display = 'grid';
+        _board.style.display = 'none';
+        _result.style.display = 'grid';
+        // _result.style.position = 'absolute';
         _playAgainBtn.addEventListener('click', _restartGame);
-        _quitMenuBtn.addEventListener('click', _initNewGame);
     }
 
     // Restart game condition
@@ -236,16 +248,15 @@ const displayController = (() => {
         Game.setRound(0);
 
         _board.addEventListener('click', _playTurn);
-        _controller.style.display = 'flex';
         _result.style.display = 'none';
-
+        _board.style.display = 'grid';
         _renderBoard();
     }
 
     // Reinitialize game
     const _initNewGame = () => {
         _restartGame();
-        initGame();
+        mainMenu();
     }
 
     // Render the BoardGame
@@ -264,7 +275,8 @@ const displayController = (() => {
 
     return {
         initGame,
+        mainMenu
     }
 })();
 
-displayController.initGame();
+displayController.mainMenu();
