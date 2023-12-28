@@ -146,6 +146,8 @@ main {
     }
 
     .controller {
+        position: relative;
+        height: 50px;
         display: flex;
         margin-top: 20px;
         gap: 20px;

@@ -161,6 +161,7 @@ const displayController = (() => {
     const _quitGameBtn = document.querySelector('.quitGame');
     const _result = document.querySelector('.result');
     const _display = document.querySelector('.display');
+    const _status = document.querySelectorAll('.status');
     const _playAgainBtn = document.querySelector('.playAgain');
 
     // Lobby - main menu (1st call)
@@ -169,6 +170,8 @@ const displayController = (() => {
         _form.style.display = 'none';
         _playground.style.display = 'none';
         _result.style.display = 'none';
+
+        _controller.style.visibility = 'hidden';
 
         _enterGameBtn.addEventListener('click', initGame);
     }
@@ -188,6 +191,7 @@ const displayController = (() => {
         e.preventDefault();
         _form.style.display = 'none';
         _playground.style.display = 'flex';
+        _controller.style.visibility = 'visible';
 
         const _player1 = document.querySelector('#name1').value;
         const _player2 = document.querySelector('#name2').value;
@@ -220,15 +224,18 @@ const displayController = (() => {
     }
 
     // Displaying Result
-    const _showDisplay = (text) => {
-        _display.innerText = text;
+    const _showWinner = () => {
+        _display.innerHTML = `<h2>${Game.getWinner().name}</h2>`;
+        _status[0].innerText = 'W';
+        _status[1].innerText = 'I';
+        _status[2].innerText = 'N';
     }
 
-    const _showWinner = () => {
-        _showDisplay(`${Game.getWinner().name}`);
-    }
     const _showTie = () => {
-        _showDisplay('TIE');
+        _display.innerHTML = `<h2>DRAW</h2>`;
+        _status[0].innerText = 'T';
+        _status[1].innerText = 'I';
+        _status[2].innerText = 'E';
     }
 
     // End game condition
@@ -238,6 +245,8 @@ const displayController = (() => {
         _board.style.display = 'none';
         _result.style.display = 'grid';
         // _result.style.position = 'absolute';
+
+        _restartBtn.style.display = 'none';
         _playAgainBtn.addEventListener('click', _restartGame);
     }
 
@@ -250,6 +259,8 @@ const displayController = (() => {
         _board.addEventListener('click', _playTurn);
         _result.style.display = 'none';
         _board.style.display = 'grid';
+        _restartBtn.style.display = 'inline-block';
+
         _renderBoard();
     }
 
