@@ -14,34 +14,50 @@
     </header>
 
     <main>
+        <!-- Main Menu -->
+        <div id="mainMenu">
+            <div class="gameTitle">T</div>
+            <div class="gameTitle">I/A</div>
+            <div class="gameTitle">C</div>
+            <button class="startBtn">Start</button>
+            <div class="gameTitle">T</div>
+            <div class="gameTitle">O</div>
+            <div class="gameTitle">E</div>
+        </div>
+
         <!-- Forms -->
         <form>
-            <legend>Main Menu</legend>
-            <label for="name1">Player 1:</label>
-            <input type="text" id="name1" name="player1" required placeholder="Player">
-
-            <label for="name2">Player 2:</label>
-            <input type="text" id="name2" name="player2" placeholder="Bot">
-
+            <input type="text" id="name1" name="player1" required placeholder="Enter Player 1 Name">
+            <input type="text" id="name2" name="player2" placeholder="BOT / Enter Player 2 Name">
             <button>Start Game</button>
         </form>
 
         <!-- Playground -->
         <div id="playground">
             <div id="board"></div>
-            <div class="controller">
-                <button>Restart Game</button>
-                <button>Quit Game</button>
-            </div>
 
             <div class="result">
-                <h2>Winner</h2>
-                <div class="display"> </div>
-                <div class="menu">
-                    <button>Play Again</button>
-                    <button>Quit</button>
+                <div class="display">
+                    <h2>Player</h2>
                 </div>
+                <div class="status-container">
+                    <div class="status">
+                        W
+                    </div>
+                    <div class="status">
+                        I
+                    </div>
+                    <div class="status">
+                        N
+                    </div>
+                </div>
+                <button class="playAgain">Play Again</button>
             </div>
+        </div>
+
+        <div class="controller">
+            <button class="restartGame">Restart Game</button>
+            <button class="quitGame">Quit Game</button>
         </div>
     </main>
 
