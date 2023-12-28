@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* border: 1px solid red; */
+    border: 1px solid red;
 }
 
 body {
@@ -21,99 +21,139 @@ header {
 main {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     padding: 10px;
 
-    & form {
-        /* display: none; */
+    #mainMenu,
+    #board {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 5px;
+        padding: 10px;
+        border: 1px solid black;
+        border-radius: 10px;
+        width: 500px;
+        height: 500px;
+    }
+
+    & button.startBtn,
+    #mainMenu .gameTitle {
+        border-radius: 10px;
         display: flex;
-        flex-direction: column;
+        justify-content: center;
         align-items: center;
-        gap: 20px;
-        padding: 30px;
+        font-size: 4rem;
+        font-weight: 600;
+    }
+
+    #mainMenu .startBtn {
+        grid-column: 1/4;
+        font-weight: bolder;
+    }
+
+    #board button {
+        height: auto;
+        font-weight: bold;
+        font-size: 8rem;
+        text-align: center;
+        border-radius: 10px;
+    }
+
+    & form {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(3, 1fr);
+        gap: 5px;
+        padding: 10px;
         border-radius: 10px;
         border: 2px solid black;
+        width: 500px;
+        height: 500px;
 
-        & legend {
-            font-size: 25px;
-            font-weight: 600;
+        & input,
+        button {
+            font-size: 2rem;
+            text-align: center;
         }
 
-        & input {
-            margin-top: -15px;
-            padding: 5px 10px;
+        & input#name1 {
+            grid-row: 1/2;
+            border-radius: 10px;
+        }
+
+        & input#name2 {
+            grid-row: 2/3;
             border-radius: 10px;
         }
 
         & button {
-            padding: 10px 30px;
-            border-radius: 20px;
+            grid-row: 3/4;
+            border-radius: 10px;
+            font-weight: bold;
         }
     }
 
     #playground {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 10px 30px;
+        width: 500px;
+        height: 500px;
+        border: 2px solid black;
+        border-radius: 10px;
 
-        #board {
+        .result {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: 1fr;
+            grid-template-rows: repeat(3, 1fr);
+            flex-direction: column;
             gap: 5px;
             padding: 10px;
             border: 1px solid black;
             border-radius: 10px;
-
-            & button {
-                width: 80px;
-                height: 80px;
-                font-weight: bold;
-                font-size: 80px;
-                text-align: center;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border-radius: 10px;
-            }
-        }
-
-        .controller {
-            /* display: none; */
-            display: flex;
-            flex-direction: column;
-            margin-top: 20px;
-            gap: 20px;
-
-            & button {
-                padding: 10px;
-                width: 150px;
-                border-radius: 20px;
-            }
-        }
-
-        .result {
-            /* display: none; */
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            align-items: center;
-            margin-top: 20px;
+            width: 500px;
+            height: 500px;
 
             .display {
-                height: 100px;
+                grid-row: 1/2;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 3rem;
+                font-weight: bold;
             }
 
-            .menu {
-                display: flex;
-                gap: 20px;
+            .status-container {
+                grid-row: 2/3;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
 
-                & button {
-                    padding: 10px;
-                    width: 100px;
-                    border-radius: 20px;
+                .status {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 6rem;
                 }
             }
+
+            & button {
+                grid-row: 3/4;
+                padding: 10px;
+                border-radius: 10px;
+                font-size: 2rem;
+                font-weight: bold;
+            }
+        }
+    }
+
+    .controller {
+        display: flex;
+        margin-top: 20px;
+        gap: 20px;
+
+        & button {
+            padding: 10px;
+            width: 150px;
+            border-radius: 20px;
         }
     }
 }
