@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    border: 1px solid red;
+    /* border: 1px solid red; */
 }
 
 body {
@@ -11,6 +11,7 @@ body {
     height: 100vh;
 }
 
+/* Header */
 header {
     padding: 20px;
     display: flex;
@@ -18,6 +19,7 @@ header {
     text-align: center;
 }
 
+/* Main */
 main {
     display: flex;
     flex-direction: column;
@@ -25,17 +27,11 @@ main {
     align-items: center;
     padding: 10px;
 
+    /* Main Menu */
     #mainMenu,
-    #board {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(3, 1fr);
-        gap: 5px;
-        padding: 10px;
-        border: 1px solid black;
-        border-radius: 10px;
-        width: 500px;
-        height: 500px;
+    .display,
+    .status {
+        border: 2px solid black;
     }
 
     & button.startBtn,
@@ -46,11 +42,25 @@ main {
         align-items: center;
         font-size: 4rem;
         font-weight: 600;
+        border: 2px solid black;
     }
 
     #mainMenu .startBtn {
         grid-column: 1/4;
         font-weight: bolder;
+    }
+
+    /* Board */
+    #mainMenu,
+    #board {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 5px;
+        padding: 10px;
+        border-radius: 10px;
+        width: 500px;
+        height: 500px;
     }
 
     #board button {
@@ -61,6 +71,7 @@ main {
         border-radius: 10px;
     }
 
+    /* Form */
     & form {
         display: grid;
         grid-template-columns: 1fr;
@@ -95,6 +106,7 @@ main {
         }
     }
 
+    /* Board playground */
     #playground {
         width: 500px;
         height: 500px;
@@ -108,7 +120,6 @@ main {
             flex-direction: column;
             gap: 5px;
             padding: 10px;
-            border: 1px solid black;
             border-radius: 10px;
             width: 500px;
             height: 500px;
@@ -120,18 +131,21 @@ main {
                 align-items: center;
                 font-size: 3rem;
                 font-weight: bold;
+                border-radius: 10px;
             }
 
             .status-container {
                 grid-row: 2/3;
                 display: grid;
                 grid-template-columns: repeat(3, 1fr);
+                gap: 5px;
 
                 .status {
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     font-size: 6rem;
+                    border-radius: 10px;
                 }
             }
 
@@ -145,6 +159,7 @@ main {
         }
     }
 
+    /* Controller */
     .controller {
         position: relative;
         height: 50px;
@@ -160,6 +175,7 @@ main {
     }
 }
 
+/* Footer */
 footer {
     display: flex;
     justify-content: center;
