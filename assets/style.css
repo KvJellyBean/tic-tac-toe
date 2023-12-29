@@ -9,6 +9,8 @@ body {
     display: grid;
     grid-template-rows: auto 1fr auto;
     height: 100vh;
+    background: linear-gradient(to right, rgb(255, 30, 0) 50%, rgb(0, 102, 255) 50%);
+    background-repeat: no-repeat;
 }
 
 /* Header */
@@ -43,6 +45,7 @@ main {
         font-size: 4rem;
         font-weight: 600;
         border: 2px solid black;
+        background-color: white;
     }
 
     #mainMenu .startBtn {
@@ -99,6 +102,14 @@ main {
             border-radius: 10px;
         }
 
+        & p {
+            position: absolute;
+            margin-top: 135px;
+            margin-left: 210px;
+            font-size: 40px;
+            font-weight: bold;
+        }
+
         & button {
             grid-row: 3/4;
             border-radius: 10px;
@@ -132,6 +143,7 @@ main {
                 font-size: 3rem;
                 font-weight: bold;
                 border-radius: 10px;
+                background-color: white;
             }
 
             .status-container {
@@ -146,6 +158,7 @@ main {
                     align-items: center;
                     font-size: 6rem;
                     border-radius: 10px;
+                    background-color: white;
                 }
             }
 
@@ -180,4 +193,9 @@ footer {
     display: flex;
     justify-content: center;
     padding: 10px;
+
+    & a {
+        text-decoration: none;
+        color: inherit;
+    }
 }
