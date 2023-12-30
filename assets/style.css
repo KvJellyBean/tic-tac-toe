@@ -9,8 +9,8 @@ body {
     display: grid;
     grid-template-rows: auto 1fr auto;
     height: 100vh;
-    background: linear-gradient(to right, rgb(255, 30, 0) 50%, rgb(0, 102, 255) 50%);
     background-repeat: no-repeat;
+    overflow: hidden;
 }
 
 /* Header */
@@ -198,4 +198,231 @@ footer {
         text-decoration: none;
         color: inherit;
     }
+}
+
+/* ============= */
+/* Keyframes & Animations */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes slide {
+    0% {
+        top: -1000px;
+    }
+
+    50% {
+        top: 0;
+    }
+
+    100% {
+        top: -1000px;
+    }
+}
+
+@keyframes slideUp {
+    0% {
+        top: 0;
+    }
+
+    100% {
+        top: -1000px;
+    }
+}
+
+/* Player bg-color keyframes */
+@keyframes redWin {
+    0% {
+        left: -50%;
+    }
+
+    100% {
+        left: 0%;
+    }
+}
+
+@keyframes redLose {
+    0% {
+        left: -50%;
+    }
+
+    100% {
+        left: -100%;
+    }
+}
+
+@keyframes blueWin {
+    0% {
+        right: -50%;
+    }
+
+    100% {
+        right: 0%;
+    }
+}
+
+@keyframes blueLose {
+    0% {
+        right: -50%;
+    }
+
+    100% {
+        right: -100%;
+    }
+}
+
+@keyframes resetRedWin {
+    0% {
+        left: 0%;
+    }
+
+    100% {
+        left: -50%;
+    }
+}
+
+@keyframes resetRedLose {
+    0% {
+        left: -100%;
+    }
+
+    100% {
+        left: -50%;
+    }
+}
+
+@keyframes resetBlueWin {
+    0% {
+        right: 0%;
+    }
+
+    100% {
+        right: -50%;
+    }
+}
+
+@keyframes resetBlueLose {
+    0% {
+        right: -100%;
+    }
+
+    100% {
+        right: -50%;
+    }
+}
+
+/* Slider screen */
+.slider,
+.sliderUp {
+    position: absolute;
+    top: 0px;
+    height: 100dvh;
+    width: 100dvw;
+    background-color: antiquewhite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
+    font-weight: bold;
+}
+
+.slider {
+    animation: slide 2s forwards;
+}
+
+.sliderUp {
+    animation: slideUp 2s forwards;
+}
+
+/* Animation class */
+.fadeIn-delay {
+    opacity: 0;
+    animation: fadeIn 1s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+    animation-delay: 1s;
+}
+
+.fadeIn {
+    animation: fadeIn 1s forwards;
+}
+
+.fadeInLong {
+    animation: fadeIn 1.8s forwards;
+}
+
+.fadeInOut {
+    animation: fadeInOut 2s forwards;
+}
+
+/* Player animation */
+.red,
+.blue {
+    position: absolute;
+    top: 0;
+    height: 100dvh;
+    width: 100dvw;
+    z-index: -99;
+}
+
+.red {
+    background-color: rgb(230, 5, 5);
+    left: -50%;
+}
+
+.blue {
+    background-color: rgb(0, 140, 255);
+    right: -50%;
+}
+
+.redWin {
+    animation: redWin 1s forwards;
+}
+
+.blueWin {
+    animation: blueWin 1s forwards;
+}
+
+.redLose {
+    animation: redLose 1s forwards;
+}
+
+.blueLose {
+    animation: blueLose 1s forwards;
+}
+
+.resetRedWin {
+    animation: resetRedWin 1s forwards;
+}
+
+.resetRedLose {
+    animation: resetRedLose 1s forwards;
+}
+
+.resetBlueWin {
+    animation: resetBlueWin 1s forwards;
+}
+
+.resetBlueLose {
+    animation: resetBlueLose 1s forwards;
 }
