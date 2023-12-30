@@ -314,7 +314,7 @@ const displayController = (() => {
             _playground.classList.remove('fadeInOut');
             _controller.classList.remove('fadeInOut');
             document.querySelector('.slider').remove();
-        }, 2000);
+        }, 100);
 
         // Re-set up game
         _board.removeEventListener('click', _playTurn);
@@ -350,6 +350,7 @@ const displayController = (() => {
             const button = document.createElement('button');
             button.innerText = cell;
             button.setAttribute('id', `${index}`)
+            button.style.backgroundColor = cell == 'X' ? 'red' : cell == 'O' ? 'blue' : 'antiquewhite';
             _board.appendChild(button);
         });
     };
