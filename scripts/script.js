@@ -176,6 +176,8 @@ const displayController = (() => {
         _playground.style.display = 'none';
         _result.style.display = 'none';
         _controller.style.visibility = 'hidden';
+        _redPlayer.innerText = '';
+        _bluePlayer.innerText = '';
 
         setTimeout(() => {
             document.querySelector('.sliderUp').remove();
