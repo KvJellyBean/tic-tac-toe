@@ -1,10 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,800;1,900&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap');
 
+:root {
+    --black: #131313;
+    --yellow: #fff200;
+    --red: #ED0101;
+    --blue: #0E49B5;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* border: 1px solid red; */
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -22,7 +28,14 @@ header {
     display: flex;
     justify-content: center;
     text-align: center;
-    /* font-size: 2rem; */
+    color: white;
+    visibility: hidden;
+}
+
+#mainMenu,
+form,
+#playground {
+    background-color: var(--black);
 }
 
 /* Main */
@@ -34,7 +47,6 @@ main {
     padding: 10px;
 
     /* Main Menu */
-    #mainMenu,
     .display,
     .status {
         border: 2px solid black;
@@ -49,7 +61,7 @@ main {
         font-size: 4rem;
         font-weight: 600;
         border: 2px solid black;
-        background-color: white;
+        background-color: antiquewhite;
     }
 
     #mainMenu .startBtn {
@@ -57,6 +69,9 @@ main {
         font-weight: bolder;
         font-style: italic;
         text-transform: uppercase;
+        background-color: var(--black);
+        color: var(--yellow);
+        outline: 2px solid var(--yellow);
     }
 
     /* Board */
@@ -78,6 +93,10 @@ main {
         font-size: 6rem;
         text-align: center;
         border-radius: 10px;
+        background-color: antiquewhite;
+        color: antiquewhite;
+        outline: none;
+        border: none;
     }
 
     /* Form */
@@ -88,7 +107,6 @@ main {
         gap: 5px;
         padding: 10px;
         border-radius: 10px;
-        border: 2px solid black;
         width: 500px;
         height: 500px;
 
@@ -97,6 +115,9 @@ main {
             font-size: 2rem;
             font-weight: 600;
             text-align: center;
+            background-color: antiquewhite;
+            outline: none;
+            border: none;
         }
 
         & input#name1 {
@@ -115,6 +136,9 @@ main {
             margin-left: 210px;
             font-size: 2.5rem;
             font-weight: bold;
+            background: linear-gradient(to right, var(--red), var(--blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         & button {
@@ -124,6 +148,9 @@ main {
             font-weight: bold;
             font-style: italic;
             text-transform: uppercase;
+            background-color: var(--black);
+            color: var(--yellow);
+            outline: 1px solid var(--yellow);
         }
     }
 
@@ -131,7 +158,6 @@ main {
     #playground {
         width: 500px;
         height: 500px;
-        border: 2px solid black;
         border-radius: 10px;
 
         .result {
@@ -156,7 +182,7 @@ main {
                 justify-content: center;
                 align-items: center;
                 border-radius: 10px;
-                background-color: white;
+                background-color: antiquewhite;
             }
 
             .status-container {
@@ -172,7 +198,7 @@ main {
                     font-size: 4rem;
                     font-weight: bold;
                     border-radius: 10px;
-                    background-color: white;
+                    background-color: antiquewhite;
                 }
             }
 
@@ -184,6 +210,9 @@ main {
                 font-weight: bold;
                 font-style: italic;
                 text-transform: uppercase;
+                background-color: var(--black);
+                color: var(--yellow);
+                outline: 1px solid var(--yellow);
             }
         }
     }
@@ -210,6 +239,7 @@ footer {
     display: flex;
     justify-content: center;
     padding: 10px;
+    color: white;
 
     & a {
         text-decoration: none;
@@ -403,12 +433,12 @@ footer {
 }
 
 .red {
-    background-color: rgb(230, 5, 5);
+    background-color: var(--red);
     left: -50%;
 }
 
 .blue {
-    background-color: rgb(0, 140, 255);
+    background-color: var(--blue);
     right: -50%;
 }
 
@@ -442,4 +472,8 @@ footer {
 
 .resetBlueLose {
     animation: resetBlueLose 1s forwards;
+}
+
+.redBg {
+    background-color: var(--red);
 }
