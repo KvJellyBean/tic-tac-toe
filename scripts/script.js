@@ -180,6 +180,8 @@ const displayController = (() => {
         setTimeout(() => {
             document.querySelector('.sliderUp').remove();
             document.querySelector('.slider').remove();
+            _redPlayer.classList.remove('slideInRed');
+            _bluePlayer.classList.remove('slideInBlue');
         }, 2000);
 
         // Event Handler
@@ -194,6 +196,11 @@ const displayController = (() => {
         _result.style.display = 'none';
         _form.style.display = 'grid';
         _form.classList.add('fadeInLong');
+
+        setTimeout(() => {
+            _redPlayer.classList.remove('slideInRed');
+            _bluePlayer.classList.remove('slideInBlue');
+        }, 100);
 
         // Reset form input
         const _formInput = _form.querySelectorAll('input');
@@ -223,6 +230,10 @@ const displayController = (() => {
         // Game setup
         const _player1 = document.querySelector('#name1').value;
         const _player2 = document.querySelector('#name2').value;
+        _redPlayer.innerText = _player1 + ' (X)';
+        _bluePlayer.innerText = (_player2 == '' ? 'BOT' : _player2) + ' (O)';
+        _redPlayer.classList.add('slideInRed');
+        _bluePlayer.classList.add('slideInBlue');
         Game.setPlayer(_player1, _player2);
         Game.randomFirstTurn();
         _renderBoard();
@@ -284,6 +295,8 @@ const displayController = (() => {
         _restartBtn.style.display = 'none';
         _playground.classList.add('fadeIn-delay');
         _controller.classList.add('fadeIn-delay');
+        _redPlayer.innerText = '';
+        _bluePlayer.innerText = '';
 
         setTimeout(() => {
             _playground.classList.remove('fadeIn-delay');
@@ -314,7 +327,7 @@ const displayController = (() => {
             _playground.classList.remove('fadeInOut');
             _controller.classList.remove('fadeInOut');
             document.querySelector('.slider').remove();
-        }, 100);
+        }, 2000);
 
         // Re-set up game
         _board.removeEventListener('click', _playTurn);
@@ -367,7 +380,7 @@ const displayController = (() => {
             _bluePlayer.classList.remove('blueLose', 'blueWin');
             _redPlayer.classList.remove('resetRedWin', 'resetRedLose');
             _bluePlayer.classList.remove('resetBlueLose', 'resetBlueWin');
-        }, 2000);
+        }, 1000);
     }
 
     return {
