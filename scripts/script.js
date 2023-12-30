@@ -267,14 +267,17 @@ const displayController = (() => {
             Game.playRound(e.target.id);
             _renderBoard();
 
-            if (Game.isWinning()) {
-                _showWinner();
-                _endGame();
-            }
-            if (Game.getRound() === 9) {
-                _showTie();
-                _endGame();
-            }
+            setTimeout(() => {
+                if (Game.isWinning()) {
+                    _showWinner();
+                    _restartBtn.classList.add('fast-reset');
+                    _endGame();
+                }
+                if (Game.getRound() === 9) {
+                    _showTie();
+                    _endGame();
+                }
+            }, 2000);
         }
     }
 
@@ -302,7 +305,6 @@ const displayController = (() => {
         // Animattion and display styling
         _board.style.display = 'none';
         _result.style.display = 'grid';
-        _restartBtn.classList.add('fast-reset');
         _restartBtn.style.display = 'none';
         _playground.classList.add('fadeIn-delay');
         _controller.classList.add('fadeIn-delay');
