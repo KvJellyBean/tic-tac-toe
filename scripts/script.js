@@ -223,6 +223,7 @@ const displayController = (() => {
         _controller.style.visibility = 'visible';
         _playground.classList.add('fadeIn-delay');
         _controller.classList.add('fadeIn-delay');
+        _restartBtn.classList.remove('fast-reset');
 
         const slider = document.createElement('div');
         slider.classList.add('slider');
@@ -230,10 +231,17 @@ const displayController = (() => {
         document.querySelector('main').append(slider);
 
         // Game setup
-        const _player1 = document.querySelector('#name1').value;
-        const _player2 = document.querySelector('#name2').value;
+        let _player1 = document.querySelector('#name1').value.toUpperCase();
+        let _player2 = document.querySelector('#name2').value.toUpperCase();
+        _player2 = _player2 == '' ? 'BOT' : _player2;
+        if (_player1 === _player2) {
+            _player1 += _player1 == 'BOT' ? ' - YOU' : ' - P1'
+            _player2 += _player2 == 'BOT' ? '' : ' - P2';
+        }
+
         _redPlayer.innerText = _player1 + ' (X)';
-        _bluePlayer.innerText = (_player2 == '' ? 'BOT' : _player2) + ' (O)';
+        _player1 = _player1 == 'BOT - YOU' ? 'YOU' : _player1;
+        _bluePlayer.innerText = _player2 + ' (O)';
         _redPlayer.classList.add('slideInRed');
         _bluePlayer.classList.add('slideInBlue');
         Game.setPlayer(_player1, _player2);
@@ -294,6 +302,7 @@ const displayController = (() => {
         // Animattion and display styling
         _board.style.display = 'none';
         _result.style.display = 'grid';
+        _restartBtn.classList.add('fast-reset');
         _restartBtn.style.display = 'none';
         _playground.classList.add('fadeIn-delay');
         _controller.classList.add('fadeIn-delay');
@@ -325,11 +334,19 @@ const displayController = (() => {
             document.querySelector('main').append(slider);
         }
 
-        setTimeout(() => {
-            _playground.classList.remove('fadeInOut');
-            _controller.classList.remove('fadeInOut');
-            document.querySelector('.slider').remove();
-        }, 2000);
+        if (_restartBtn.classList.contains('fast-reset')) {
+            setTimeout(() => {
+                _playground.classList.remove('fadeInOut');
+                _controller.classList.remove('fadeInOut');
+                document.querySelector('.slider').remove();
+            }, 100);
+        } else {
+            setTimeout(() => {
+                _playground.classList.remove('fadeInOut');
+                _controller.classList.remove('fadeInOut');
+                document.querySelector('.slider').remove();
+            }, 2000);
+        }
 
         // Re-set up game
         _board.removeEventListener('click', _playTurn);
