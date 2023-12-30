@@ -297,6 +297,30 @@ footer {
     }
 }
 
+@keyframes slideInRed {
+    0% {
+        padding-right: 0%;
+        color: transparent;
+    }
+
+    100% {
+        padding-right: 25%;
+        color: antiquewhite;
+    }
+}
+
+@keyframes slideInBlue {
+    0% {
+        padding-left: 0%;
+        color: transparent;
+    }
+
+    100% {
+        padding-left: 25%;
+        color: antiquewhite;
+    }
+}
+
 /* Player bg-color keyframes */
 @keyframes redWin {
     0% {
@@ -401,6 +425,7 @@ footer {
     animation: slideUp 2s forwards;
 }
 
+
 /* Animation class */
 .fadeIn-delay {
     opacity: 0;
@@ -422,6 +447,16 @@ footer {
     animation: fadeInOut 2s forwards;
 }
 
+.slideInRed {
+    animation: slideInRed 1s forwards;
+    animation-delay: 1s;
+}
+
+.slideInBlue {
+    animation: slideInBlue 1s forwards;
+    animation-delay: 1s;
+}
+
 /* Player animation */
 .red,
 .blue {
@@ -430,16 +465,28 @@ footer {
     height: 100dvh;
     width: 100dvw;
     z-index: -99;
+    display: flex;
+    align-items: center;
+    font-size: 3rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: transparent;
 }
 
 .red {
     background-color: var(--red);
     left: -50%;
+    justify-content: end;
+    padding-right: 25%;
+    font-size: 3rem;
 }
 
 .blue {
     background-color: var(--blue);
     right: -50%;
+    justify-content: start;
+    padding-left: 25%;
+    font-size: 3rem;
 }
 
 .redWin {
