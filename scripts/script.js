@@ -150,60 +150,94 @@ const Game = (() => {
     }
 })();
 
+// ALL ABOUT DISPLAY
 const displayController = (() => {
     const _mainMenu = document.querySelector('#mainMenu');
+    const _enterGameBtn = document.querySelector('.startBtn');
     const _form = document.querySelector('form');
     const _playground = document.querySelector('#playground');
     const _board = document.querySelector('#board');
-    const _enterGameBtn = document.querySelector('.startBtn');
-    const _controller = document.querySelector('.controller');
-    const _restartBtn = document.querySelector('.restartGame');
-    const _quitGameBtn = document.querySelector('.quitGame');
     const _result = document.querySelector('.result');
     const _display = document.querySelector('.display');
     const _status = document.querySelectorAll('.status');
     const _playAgainBtn = document.querySelector('.playAgain');
+    const _controller = document.querySelector('.controller');
+    const _restartBtn = document.querySelector('.restartGame');
+    const _quitGameBtn = document.querySelector('.quitGame');
+    const _redPlayer = document.querySelector('.red');
+    const _bluePlayer = document.querySelector('.blue');
 
     // Lobby - main menu (1st call)
     const mainMenu = () => {
+        // Animattion and display styling
+        _mainMenu.classList.add('fadeIn-delay');
         _mainMenu.style.display = 'grid';
         _form.style.display = 'none';
         _playground.style.display = 'none';
         _result.style.display = 'none';
-
         _controller.style.visibility = 'hidden';
 
+        setTimeout(() => {
+            document.querySelector('.sliderUp').remove();
+            document.querySelector('.slider').remove();
+        }, 2000);
+
+        // Event Handler
         _enterGameBtn.addEventListener('click', initGame);
     }
 
     // Game initialize
     const initGame = () => {
+        // Animattion and display styling
         _mainMenu.style.display = 'none';
+        _playground.style.display = 'none';
+        _result.style.display = 'none';
         _form.style.display = 'grid';
+        _form.classList.add('fadeInLong');
 
+        // Reset form input
         const _formInput = _form.querySelectorAll('input');
         _formInput.forEach(input => input.value = "");
+
+        // Event Handler
         _form.addEventListener('submit', _gameStart);
     };
 
     // Game Starting
     const _gameStart = (e) => {
         e.preventDefault();
+
+        // Animattion and display styling
         _form.style.display = 'none';
+        _form.removeAttribute('class');
         _playground.style.display = 'flex';
         _controller.style.visibility = 'visible';
+        _playground.classList.add('fadeIn-delay');
+        _controller.classList.add('fadeIn-delay');
 
+        const slider = document.createElement('div');
+        slider.classList.add('slider');
+        slider.innerText = 'FIGHT';
+        document.querySelector('main').append(slider);
+
+        // Game setup
         const _player1 = document.querySelector('#name1').value;
         const _player2 = document.querySelector('#name2').value;
         Game.setPlayer(_player1, _player2);
         Game.randomFirstTurn();
         _renderBoard();
 
+        // Event Handler
         _restartBtn.addEventListener('click', _restartGame);
         _quitGameBtn.addEventListener('click', _initNewGame);
-
         const clickEvent = Game.gameIsOver() ? 'removeEventListener' : 'addEventListener';
         _board[clickEvent]('click', _playTurn);
+
+        setTimeout(() => {
+            _playground.classList.remove('fadeIn-delay');
+            _controller.classList.remove('fadeIn-delay');
+            document.querySelector('.slider').remove();
+        }, 2000);
     }
 
     // Game action each turn/round
@@ -229,6 +263,10 @@ const displayController = (() => {
         _status[0].innerText = 'W';
         _status[1].innerText = 'I';
         _status[2].innerText = 'N';
+
+        // Change background based on which side is winning
+        _redPlayer.classList.add(Game.getWinner().mark == 'X' ? 'redWin' : 'redLose');
+        _bluePlayer.classList.add(Game.getWinner().mark == 'X' ? 'blueLose' : 'blueWin');
     }
 
     const _showTie = () => {
@@ -240,34 +278,66 @@ const displayController = (() => {
 
     // End game condition
     const _endGame = () => {
-        _board.removeEventListener('click', _playTurn);
-        // _board.style.display = 'grid';
+        // Animattion and display styling
         _board.style.display = 'none';
         _result.style.display = 'grid';
-        // _result.style.position = 'absolute';
-
         _restartBtn.style.display = 'none';
-        _playAgainBtn.addEventListener('click', _restartGame);
+        _playground.classList.add('fadeIn-delay');
+        _controller.classList.add('fadeIn-delay');
+
+        setTimeout(() => {
+            _playground.classList.remove('fadeIn-delay');
+            _controller.classList.remove('fadeIn-delay');
+        }, 2000);
+
+        // Event Handler
+        _board.removeEventListener('click', _playTurn);
+        _playAgainBtn.addEventListener('click', _playAgain);
     }
 
     // Restart game condition
     const _restartGame = () => {
-        _board.removeEventListener('click', _playTurn);
-        Game.resetGame();
-        Game.setRound(0);
-
-        _board.addEventListener('click', _playTurn);
+        // Animation and display styling
         _result.style.display = 'none';
         _board.style.display = 'grid';
         _restartBtn.style.display = 'inline-block';
+        _playground.classList.add('fadeInOut');
+        _controller.classList.add('fadeInOut');
+
+        if (!((_redPlayer.classList.contains('redWin') && _bluePlayer.classList.contains('blueLose')) || (_redPlayer.classList.contains('redLose') && _bluePlayer.classList.contains('blueWin')))) {
+            const slider = document.createElement('div');
+            slider.classList.add('slider');
+            document.querySelector('main').append(slider);
+        }
+
+        setTimeout(() => {
+            _playground.classList.remove('fadeInOut');
+            _controller.classList.remove('fadeInOut');
+            document.querySelector('.slider').remove();
+        }, 2000);
+
+        // Re-set up game
+        _board.removeEventListener('click', _playTurn);
+        Game.resetGame();
+        Game.setRound(0);
+        _board.addEventListener('click', _playTurn);
 
         _renderBoard();
+    }
+
+    // Play another game function
+    const _playAgain = () => {
+        _controller.style.visibility = 'hidden';
+        _restartGame();
+        _resetBackground();
+        initGame();
     }
 
     // Reinitialize game
     const _initNewGame = () => {
         _restartGame();
         mainMenu();
+        _resetBackground();
     }
 
     // Render the BoardGame
@@ -283,6 +353,21 @@ const displayController = (() => {
             _board.appendChild(button);
         });
     };
+
+    // Re-set up background
+    const _resetBackground = () => {
+        if ((_redPlayer.classList.contains('redWin') && _bluePlayer.classList.contains('blueLose')) || (_redPlayer.classList.contains('redLose') && _bluePlayer.classList.contains('blueWin'))) {
+            _redPlayer.classList.add(Game.getWinner().mark == 'X' ? 'resetRedWin' : 'resetRedLose');
+            _bluePlayer.classList.add(Game.getWinner().mark == 'X' ? 'resetBlueLose' : 'resetBlueWin');
+        }
+
+        setTimeout(() => {
+            _redPlayer.classList.remove('redWin', 'redLose');
+            _bluePlayer.classList.remove('blueLose', 'blueWin');
+            _redPlayer.classList.remove('resetRedWin', 'resetRedLose');
+            _bluePlayer.classList.remove('resetBlueLose', 'resetBlueWin');
+        }, 2000);
+    }
 
     return {
         initGame,
