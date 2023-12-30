@@ -137,6 +137,7 @@ main {
             font-size: 2.5rem;
             font-weight: bold;
             background: linear-gradient(to right, var(--red), var(--blue));
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
