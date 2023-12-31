@@ -176,8 +176,8 @@ const displayController = (() => {
         _playground.style.display = 'none';
         _result.style.display = 'none';
         _controller.style.visibility = 'hidden';
-        _redPlayer.innerText = '';
-        _bluePlayer.innerText = '';
+        _redPlayer.innerHTML = '';
+        _bluePlayer.innerHTML = '';
 
         setTimeout(() => {
             document.querySelector('.sliderUp').remove();
@@ -239,9 +239,9 @@ const displayController = (() => {
             _player2 += _player2 == 'BOT' ? '' : ' - P2';
         }
 
-        _redPlayer.innerText = _player1 + ' (X)';
+        _redPlayer.innerHTML = `<p>${_player1} - (X)</p>`;
         _player1 = _player1 == 'BOT - YOU' ? 'YOU' : _player1;
-        _bluePlayer.innerText = _player2 + ' (O)';
+        _bluePlayer.innerHTML = `<p>${_player2} - (O)</p>`;
         _redPlayer.classList.add('slideInRed');
         _bluePlayer.classList.add('slideInBlue');
         Game.setPlayer(_player1, _player2);
@@ -277,7 +277,7 @@ const displayController = (() => {
                     _showTie();
                     _endGame();
                 }
-            }, 2000);
+            }, 2500);
         }
     }
 
@@ -308,13 +308,13 @@ const displayController = (() => {
         _restartBtn.style.display = 'none';
         _playground.classList.add('fadeIn-delay');
         _controller.classList.add('fadeIn-delay');
-        _redPlayer.innerText = '';
-        _bluePlayer.innerText = '';
+        _redPlayer.innerHTML = '';
+        _bluePlayer.innerHTML = '';
 
         setTimeout(() => {
             _playground.classList.remove('fadeIn-delay');
             _controller.classList.remove('fadeIn-delay');
-        }, 2000);
+        }, 2500);
 
         // Event Handler
         _board.removeEventListener('click', _playTurn);
