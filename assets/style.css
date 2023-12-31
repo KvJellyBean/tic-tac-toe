@@ -602,10 +602,6 @@ footer {
     background-color: var(--red);
 }
 
-* {
-    /* border: 1px solid yellow; */
-}
-
 /* Media Query */
 @media screen and (max-width: 430px) {
     body {
