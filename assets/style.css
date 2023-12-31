@@ -390,6 +390,7 @@ footer {
     100% {
         width: 100%;
         left: -100%;
+        display: none;
     }
 }
 
@@ -414,6 +415,7 @@ footer {
     100% {
         width: 100%;
         right: -100%;
+        display: none;
     }
 }
 
