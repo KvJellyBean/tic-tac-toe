@@ -95,6 +95,24 @@ const Game = (() => {
         _switchPlayerTurn();
     };
 
+    const playBotTurn = () => {
+        if (getCurrentPlayer().mark == 'O') {
+            const availableCells = GameBoard.getBoard().reduce((acc, cell, index) => {
+                if (!cell) {
+                    acc.push(index);
+                }
+                return acc;
+            }, []);
+
+            const randomIndex = Math.floor(Math.random() * availableCells.length);
+            const botMove = availableCells[randomIndex];
+
+            playRound(botMove);
+        } else {
+            return;
+        }
+    }
+
     // Function to reset/restart the gmae
     const resetGame = () => {
         gameOver = false;
@@ -144,6 +162,7 @@ const Game = (() => {
         getWinner,
         randomFirstTurn,
         playRound,
+        playBotTurn,
         resetGame,
         isWinning,
         gameIsOver
@@ -253,6 +272,17 @@ const displayController = (() => {
         _quitGameBtn.addEventListener('click', _initNewGame);
         const clickEvent = Game.gameIsOver() ? 'removeEventListener' : 'addEventListener';
         _board[clickEvent]('click', _playTurn);
+        GameBoard.resetBoard();
+        _renderBoard();
+
+        // Condition when the first turn is bot
+        if (Game.getCurrentPlayer().name === 'BOT') {
+            // Simulate bot's turn after a short delay
+            setTimeout(() => {
+                Game.playBotTurn();
+                _renderBoard();
+            }, 1000);
+        }
 
         setTimeout(() => {
             _playground.classList.remove('fadeIn-delay');
@@ -278,6 +308,28 @@ const displayController = (() => {
                     _endGame();
                 }
             }, 2500);
+
+            // Check bot turn
+            if (Game.getCurrentPlayer().name === 'BOT' && !Game.gameIsOver()) {
+                _board.removeEventListener('click', _playTurn);
+                setTimeout(() => {
+                    Game.playBotTurn();
+                    _renderBoard();
+                    setTimeout(() => {
+                        if (Game.isWinning()) {
+                            _showWinner();
+                            _restartBtn.classList.add('fast-reset');
+                            _endGame();
+                        }
+                        if (Game.getRound() === 9) {
+                            _showTie();
+                            _endGame();
+                        }
+                    }, 2500);
+                    _board.addEventListener('click', _playTurn);
+                }, 500);
+            }
+
         }
     }
 
@@ -354,7 +406,16 @@ const displayController = (() => {
         _board.removeEventListener('click', _playTurn);
         Game.resetGame();
         Game.setRound(0);
-        _board.addEventListener('click', _playTurn);
+        if (Game.getCurrentPlayer().name === 'BOT') {
+            // Simulate bot's turn after a short delay
+            setTimeout(() => {
+                Game.playBotTurn();
+                _renderBoard();
+            }, 1000);
+        }
+        setTimeout(() => {
+            _board.addEventListener('click', _playTurn);
+        }, 2000);
 
         _renderBoard();
     }
